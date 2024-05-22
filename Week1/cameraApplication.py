@@ -132,6 +132,8 @@ class CameraApplication:
             frame (numpy.ndarray): The input frame.
         """
         img_timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        timestamp = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        cv2.putText(frame, timestamp, (450, frame.shape[0] - 10), cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 0.5, (255, 255, 255), 2)
         cv2.imshow('WPI_CAM', np.ones_like(frame) * 255)  # Display white screen
         cv2.waitKey(200)  # Wait for 0.5 seconds
 
@@ -301,8 +303,7 @@ class CameraApplication:
                 break
             
 
-            timestamp = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-            cv2.putText(frame, timestamp, (450, frame.shape[0] - 10), cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 0.5, (255, 255, 255), 2)
+            
             text_org = 120
             if self.threshold_flag:
                 cv2.putText(frame, "Threshold", (10, text_org), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
