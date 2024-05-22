@@ -1,3 +1,8 @@
+'''
+Author: Atreya Bhat
+RBE 549 Computer Vision @ WPI
+'''
+
 import cv2
 import datetime
 import numpy as np
