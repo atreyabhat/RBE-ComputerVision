@@ -30,16 +30,15 @@ A simple camera application to read camera feed and perform various operations o
    
 4. **Image Capture:**
    - Press 'c' to capture and save an image.
-   - Images are saved with a timestamp as 'Week1.jpg'.
    - The image is also modified with the timestamp RoI overlaid on the top right corner.
    
 5. **Video Recording:**
    - Press 'v' to start recording. Press again to stop.
-   - Recorded videos are saved as 'Week1.avi' in the project directory.
 
 ## Requirements
 - Python 3.x
 - OpenCV library
+- Numpy
 
 ## Usage
 ```bash
