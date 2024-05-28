@@ -6,7 +6,7 @@ RBE 549 Computer Vision @ WPI
 import cv2
 import datetime
 import numpy as np
-from filters import *
+from cv_utils import *
 import matplotlib.pyplot as plt
 
 
@@ -34,6 +34,8 @@ class CameraApplication:
         self.sigma = 0
         self.threshold_value = 127 
         self.sharpen_strength = 2 
+        self.canny_thresh_default = 100
+        self.sobel_default = 3
         
         # Initialize flags
         self.rotated_flag = False
@@ -53,9 +55,9 @@ class CameraApplication:
         cv2.createTrackbar('Blur-Sigma', 'WPI_CAM', self.sigma, 30, self.update_sigma)
         cv2.createTrackbar('Sharpen-Strength', 'WPI_CAM', self.sharpen_strength, 10, self.update_sharpen_strength)
         cv2.createTrackbar('Zoom', 'WPI_CAM', int(self.zoom_factor * 10), int(self.zoom_max * 10), self.update_zoom_factor)
-        cv2.createTrackbar('Sobel Kernel', 'WPI_CAM', 10, 50, self.update_sobel_kernel)
-        cv2.createTrackbar('Canny Threshold1', 'WPI_CAM', 1, 5000, self.update_canny_threshold_1)
-        cv2.createTrackbar('Canny Threshold2', 'WPI_CAM', 2, 5000, self.update_canny_threshold_2)
+        cv2.createTrackbar('Sobel Kernel', 'WPI_CAM', self.sobel_default, 50, self.update_sobel_kernel)
+        cv2.createTrackbar('Canny Threshold1', 'WPI_CAM', self.canny_thresh_default, 5000, self.update_canny_threshold_1)
+        cv2.createTrackbar('Canny Threshold2', 'WPI_CAM', self.canny_thresh_default, 5000, self.update_canny_threshold_2)
 
     def update_sigma(self, value):
         """
@@ -179,6 +181,8 @@ class CameraApplication:
                     self.sobelx_flag = not self.sobelx_flag
                 elif second_key == ord('y'):
                     self.sobely_flag = not self.sobely_flag
+
+            #Week 2 - Display 4 pictures with sobel and laplacian
             elif key == ord('4'):
                 # Convert the frame to grayscale
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)               
@@ -205,14 +209,14 @@ class CameraApplication:
             if self.extract_color_flag:
                 cv2.putText(frame, "Color Segmentation", (10, text_org+60), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
 
-            # Blend logo and add border
-            if frame.shape[0] >= 100 and frame.shape[1] >= 100:
-                logo_resized_uint8 = self.logo_resized.astype(np.uint8)
-                frame_uint8 = frame[0:100, 0:100].astype(np.uint8)
-                frame[0:100, 0:100] = cv2.addWeighted(frame_uint8, 0.5, logo_resized_uint8, 0.5, 0)
+            # # Blend logo and add border
+            # if frame.shape[0] >= 100 and frame.shape[1] >= 100:
+            #     logo_resized_uint8 = self.logo_resized.astype(np.uint8)
+            #     frame_uint8 = frame[0:100, 0:100].astype(np.uint8)
+            #     frame[0:100, 0:100] = cv2.addWeighted(frame_uint8, 0.5, logo_resized_uint8, 0.5, 0)
 
             frame = border(frame)
-            
+
             #Show the image
             cv2.imshow('WPI_CAM', frame)
             

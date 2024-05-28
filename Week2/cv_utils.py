@@ -7,6 +7,10 @@ import cv2
 import datetime
 import numpy as np
 
+####################################################
+# WEEK 1
+####################################################
+
 def zoom(frame, zoom_factor):
     """
     Applies zoom to the frame.
@@ -152,46 +156,145 @@ def extract_color(frame):
     return cv2.bitwise_and(frame, frame, mask=full_mask)
 
 
+
+####################################################
+# WEEK 2
+####################################################
+
+
 def sobel_custom(frame,direction='x'):
 
     if(direction=='x'):
         sobel_x = np.array([[-1, 0, 1],
                             [-2, 0, 2],
                             [-1, 0, 1]], dtype=np.float32)
-        # return cv2.filter2D(frame, -1, sobel_x)
-        return filter2D_custom(frame, sobel_x)
+        return cv2.filter2D(frame, -1, sobel_x)
         
     elif(direction=='y'):
         sobel_y = np.array([[-1, -2, -1],
                             [0,  0,  0],
                             [1,  2,  1]], dtype=np.float32)
-        # return cv2.filter2D(frame, -1, sobel_y)
-        return filter2D_custom(frame, sobel_y)
+        return cv2.filter2D(frame, -1, sobel_y)
     
 
 def laplacian_custom(frame):
     laplacian = np.array([[0, 1, 0],
                           [1, -4, 1],
                           [0, 1, 0]], dtype=np.float32)
-    # return cv2.filter2D(frame, -1, laplacian)
-    return filter2D_custom(frame, laplacian)
-
-def filter2D_custom(frame, kernel):
-    filtered_frame = np.zeros_like(frame, dtype=np.float32)
-    for i in range(1, frame.shape[0] - 1):
-        for j in range(1, frame.shape[1] - 1):
-            filtered_frame[i, j] = np.sum(frame[i-1:i+2, j-1:j+2] * kernel)
-
-    # Normalize the filtered frame
-    filtered_frame = np.clip(filtered_frame, 0, 255).astype(np.uint8)
-    return filtered_frame
+    return cv2.filter2D(frame, -1, laplacian)
 
 
 def sobel(frame,direction,ksize):
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
     if(direction=='x'):
         return cv2.Sobel(frame, cv2.CV_64F, 1, 0, ksize)
     elif(direction=='y'):
         return cv2.Sobel(frame, cv2.CV_64F, 0, 1, ksize)
     
+    
 def canny(frame,threshold1=100,threshold2=200):
     return cv2.Canny(frame, threshold1, threshold2)
+
+def scale_frame(frame, scale):
+    """
+    Scales the frame.
+    Args:
+        frame (numpy.ndarray): The input frame.
+        scale (float): The scale factor.
+    Returns:
+        numpy.ndarray: The scaled frame.
+    """
+    return cv2.resize(frame, (0, 0), fx=scale, fy=scale)
+
+def affine_transform(frame, angle):
+    """
+    Applies affine transformation to the frame.
+    Args:
+        frame (numpy.ndarray): The input frame.
+    Returns:
+        numpy.ndarray: The frame with affine transformation applied.
+    """
+    rows, cols = frame.shape[:2]
+    M = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, 1)
+    return cv2.warpAffine(frame, M, (cols, rows))
+
+def perspective_transform(frame,pts1,pts2):
+    """
+    Applies perspective transformation to the frame.
+    Args:
+        frame (numpy.ndarray): The input frame.
+    Returns:
+        numpy.ndarray: The frame with perspective transformation applied.
+    """
+    rows, cols = frame.shape[:2]
+    
+    M = cv2.getPerspectiveTransform(pts1, pts2)
+    return cv2.warpPerspective(frame, M, (cols, rows))
+
+
+def harris(frame, blockSize, ksize, k,corner_threshold=0.1):
+    """
+    Performs Harris corner detection on the input frame and refines the corner points.
+
+    Parameters:
+    - frame: The input frame
+    - blockSize: The size of the neighbourhood considered for corner detection
+    - ksize: Aperture parameter of the Sobel derivative used
+    - k: Harris detector free parameter in the equation
+
+    Returns:
+    - harris_frame: The frame with highlighted Harris corners
+    - refined_frame: The frame with refined corner points
+    """
+    # Convert to grayscale
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray_float = np.float32(gray)
+
+    # Apply Harris corner detection
+    harris_corners = cv2.cornerHarris(gray_float, blockSize=blockSize, ksize=ksize, k=k)
+
+    # Dilate corner image to enhance corner points
+    harris_corners = cv2.dilate(harris_corners, None)
+
+    # Threshold to mark the corners in the original image
+    harris_frame = frame.copy()
+    harris_frame[harris_corners > corner_threshold * harris_corners.max()] = [0, 0, 255]
+
+    # Refine corner points
+    ret, labels, stats, centroids = cv2.connectedComponentsWithStats(np.uint8(harris_corners > 0.01 * harris_corners.max()))
+    criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.001)
+    corners = cv2.cornerSubPix(gray, np.float32(centroids), (5, 5), (-1, -1), criteria)
+
+    # Draw refined corners
+    refined_frame = frame.copy()
+    for corner in corners:
+        x, y = corner
+        cv2.circle(refined_frame, (int(x), int(y)), 5, (0, 0, 255), 1)
+
+    return harris_frame, refined_frame
+
+def sift(frame, nfeatures=0, nOctaveLayers=3, contrastThreshold=0.2, edgeThreshold=10, sigma=1.6):
+    """
+    Performs SIFT feature detection on the input frame.
+
+    Parameters:
+    - frame: The input frame
+
+    Returns:
+    - sift_frame: The frame with SIFT keypoints drawn
+    """
+
+    # Create SIFT object with custom parameters
+    sift = cv2.SIFT_create(
+        nfeatures=nfeatures,
+        nOctaveLayers=nOctaveLayers,
+        contrastThreshold=contrastThreshold,
+        edgeThreshold=edgeThreshold,
+        sigma=sigma)
+
+    sift_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY).copy()
+    kp, _ = sift.detectAndCompute(sift_frame, None)
+    sift_frame = cv2.drawKeypoints(sift_frame, kp, sift_frame, color=(0, 255, 0))
+    return sift_frame
+
