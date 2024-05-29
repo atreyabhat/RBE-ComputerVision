@@ -75,17 +75,18 @@ while True:
         harris_frame, refined_frame = harris(frame, blockSize, ksize, k, corner_threshold)
         if display_refined_harris:
             cv2.destroyWindow('SIFT Feature Detection')  # Close SIFT window if open
-            cv2.destroyWindow('Refined Harris Corner Detection')  # Close refined Harris window if open
-            cv2.imshow('Harris Corner Detection', refined_frame)
+            cv2.destroyWindow('Harris Corner Detection')  # Close refined Harris window if open
+            cv2.imshow('Refined Harris Corner Detection', refined_frame)
            
         else:
             cv2.destroyWindow('SIFT Feature Detection')  # Close SIFT window if open
-            cv2.destroyWindow('Harris Corner Detection')  # Close SIFT window if open
-            cv2.imshow('Refined Harris Corner Detection', harris_frame)
+            cv2.destroyWindow('Refined Harris Corner Detection')  # Close SIFT window if open
+            cv2.imshow('Harris Corner Detection', harris_frame)
             
     else:
         # Perform SIFT feature detection
         sift_frame = sift(frame, nfeatures, nOctaveLayers, contrastThreshold, edgeThreshold, sigma)
+        print(sigma)
         cv2.destroyWindow('Harris Corner Detection')  # Close Harris window if open
         cv2.destroyWindow('Refined Harris Corner Detection')
         cv2.imshow('SIFT Feature Detection', sift_frame)

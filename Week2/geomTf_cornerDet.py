@@ -70,7 +70,7 @@ ksize = 3
 k = 0.04
 corner_threshold = 0.2
 
-harris_frame, _ = harris(frame, blockSize, ksize, k,corner_threshold)
+harris_frame, refined_harris = harris(frame, blockSize, ksize, k,corner_threshold)
 harris_rotated_frame, _ = harris(rotated_frame, blockSize, ksize, k)
 harris_scaled_up_frame,_ = harris(scaled_up_frame, blockSize, ksize, k)
 harris_scaled_down_frame,_ = harris(scaled_down_frame, blockSize, ksize, k)
@@ -91,6 +91,7 @@ results_dir = 'results'
 os.makedirs(results_dir, exist_ok=True)
 # Save images with proper file names
 cv2.imwrite(os.path.join(results_dir, 'harris_frame.jpg'), harris_frame)
+cv2.imwrite(os.path.join(results_dir, 'refined_harris.jpg'), refined_harris)
 cv2.imwrite(os.path.join(results_dir, 'harris_rotated.jpg'), harris_rotated_frame)
 cv2.imwrite(os.path.join(results_dir, 'harris_scaled_up.jpg'), harris_scaled_up_frame)
 cv2.imwrite(os.path.join(results_dir, 'harris_scaled_down.jpg'), harris_scaled_down_frame)
