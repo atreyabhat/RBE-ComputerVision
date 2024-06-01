@@ -28,7 +28,7 @@ class CameraApplication:
         self.logo_resized = cv2.resize(self.logo, (100, 100))
 
         #for feature matching
-        self.train_img = cv2.imread(train_image_path)
+        self.train_img = cv2.imread(train_image_path, cv2.IMREAD_GRAYSCALE)
         
         # Initialize variables
         self.zoom_factor = 1.0
@@ -205,13 +205,16 @@ class CameraApplication:
                 cv2.destroyAllWindows()
 
             #Week 3 - Sift and Surf
-            elif key == ord('s'):
-                # Check for combination keypresses
+            elif key == ord('f'):
                 second_key = cv2.waitKey(0) & 0xFF
-                if second_key == ord('i'):
+                if second_key == ord('1'):
                     self.sift_flag = not self.sift_flag
-                elif second_key == ord('u'):
+                    self.surf_flag = False
+                elif second_key == ord('2'):
                     self.surf_flag = not self.surf_flag
+                    self.sift_flag = False
+
+
             elif key == 27:  # ESC key to exit
                 break
             
@@ -225,6 +228,10 @@ class CameraApplication:
                 cv2.putText(frame, "Sharpen", (10, text_org+40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
             if self.extract_color_flag:
                 cv2.putText(frame, "Color Segmentation", (10, text_org+60), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+            if self.sift_flag:
+                cv2.putText(frame, "SIFT", (10, text_org+80), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+            if self.surf_flag:
+                cv2.putText(frame, "SURF", (10, text_org+80), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
 
             
 

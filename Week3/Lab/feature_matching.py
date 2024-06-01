@@ -1,8 +1,12 @@
 import cv2
 import numpy as np
 from cv_utils import *
+import os
 
-def draw_matches(img1, kp1, img2, kp2, matches, title):
+results_dir = 'results'
+os.makedirs(results_dir, exist_ok=True)
+
+def visualize_save(img1, kp1, img2, kp2, matches, title):
     result_img = cv2.drawMatches(img1, kp1, img2, kp2, matches, None, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     
     # Draw red blobs around the endpoints of the matching lines
@@ -17,6 +21,7 @@ def draw_matches(img1, kp1, img2, kp2, matches, title):
 
     cv2.namedWindow(title, cv2.WINDOW_NORMAL)
     cv2.resizeWindow(title, 600, 400)
+    cv2.imwrite(os.path.join(results_dir, title +'.jpg'),result_img)
     cv2.imshow(title, result_img)
 
 # Apply RANSAC for outlier rejection
@@ -90,12 +95,12 @@ good_matches_sift_flann_ransac = filter_matches_with_ransac(book_keypoints_sift,
 good_matches_surf_flann_ransac = filter_matches_with_ransac(book_keypoints_surf, table_keypoints_surf, good_matches_surf_flann)
 
 
-draw_matches(book_img, book_keypoints_sift, table_img, table_keypoints_sift, matches_sift_bf[:30], 'SIFT + Brute-Force')
-draw_matches(book_img, book_keypoints_sift, table_img, table_keypoints_sift, good_matches_sift_flann[:30], 'SIFT + FLANN')
-draw_matches(book_img, book_keypoints_surf, table_img, table_keypoints_surf, matches_surf_bf[:30], 'SURF + Brute-Force')
-draw_matches(book_img, book_keypoints_surf, table_img, table_keypoints_surf, good_matches_surf_flann[:30], 'SURF + FLANN')
-draw_matches(book_img, book_keypoints_sift, table_img, table_keypoints_sift, good_matches_sift_flann_ransac[:30], 'SIFT + FLANN + RANSAC')
-draw_matches(book_img, book_keypoints_surf, table_img, table_keypoints_surf, good_matches_surf_flann_ransac[:30], 'SURF + FLANN + RANSAC')
+visualize_save(book_img, book_keypoints_sift, table_img, table_keypoints_sift, matches_sift_bf[:30], 'SIFT + Brute-Force')
+visualize_save(book_img, book_keypoints_sift, table_img, table_keypoints_sift, good_matches_sift_flann[:30], 'SIFT + FLANN')
+visualize_save(book_img, book_keypoints_surf, table_img, table_keypoints_surf, matches_surf_bf[:30], 'SURF + Brute-Force')
+visualize_save(book_img, book_keypoints_surf, table_img, table_keypoints_surf, good_matches_surf_flann[:30], 'SURF + FLANN')
+visualize_save(book_img, book_keypoints_sift, table_img, table_keypoints_sift, good_matches_sift_flann_ransac[:30], 'SIFT + FLANN + RANSAC')
+visualize_save(book_img, book_keypoints_surf, table_img, table_keypoints_surf, good_matches_surf_flann_ransac[:30], 'SURF + FLANN + RANSAC')
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

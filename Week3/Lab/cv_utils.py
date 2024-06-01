@@ -304,18 +304,18 @@ def sift(frame, nfeatures=0, nOctaveLayers=3, contrastThreshold=0.2, edgeThresho
 ####################################################
 
 
-def draw_matches(img1, kp1, img2, kp2, matches):
+def custom_draw_matches(img1, kp1, img2, kp2, matches):
     result_img = cv2.drawMatches(img1, kp1, img2, kp2, matches, None, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
     
-    # Draw red blobs around the endpoints of the matching lines
-    for match in matches:
-        img1_idx = match.queryIdx
-        img2_idx = match.trainIdx
-        (x1, y1) = kp1[img1_idx].pt
-        (x2, y2) = kp2[img2_idx].pt
-        x2 += img1.shape[1]  # Shift x2 for display on the combined image
-        cv2.circle(result_img, (int(x1), int(y1)), 5, (0, 0, 255), -1)  # Red blob in image 1
-        cv2.circle(result_img, (int(x2), int(y2)), 5, (0, 0, 255), -1)  # Red blob in image 2
+    # # Draw red blobs around the endpoints of the matching lines
+    # for match in matches:
+    #     img1_idx = match.queryIdx
+    #     img2_idx = match.trainIdx
+    #     (x1, y1) = kp1[img1_idx].pt
+    #     (x2, y2) = kp2[img2_idx].pt
+    #     x2 += img1.shape[1]  # Shift x2 for display on the combined image
+    #     cv2.circle(result_img, (int(x1), int(y1)), 5, (0, 0, 255), -1)  # Red blob in image 1
+    #     cv2.circle(result_img, (int(x2), int(y2)), 5, (0, 0, 255), -1)  # Red blob in image 2
 
     return result_img
 
@@ -349,7 +349,7 @@ def sift_feature_matching(img1, img2, use_ransac=False):
 
     # Match descriptors using FLANN
     matches = flann.knnMatch(descriptors1, descriptors2, k=2)
-    
+
     # Apply ratio test to filter good matches
     good_matches = []
     for m, n in matches:
@@ -360,7 +360,7 @@ def sift_feature_matching(img1, img2, use_ransac=False):
     if use_ransac:
         good_matches = filter_matches_with_ransac(keypoints1, keypoints2, good_matches[:50])
 
-    result_img = draw_matches(img1, keypoints1, img2, keypoints2, good_matches[:50])
+    result_img = custom_draw_matches(img1, keypoints1, img2, keypoints2, good_matches[:50])
 
     return result_img
 
@@ -391,6 +391,6 @@ def surf_feature_matching(img1, img2, use_ransac=False, hessian_threshold=800):
     if use_ransac:
         good_matches = filter_matches_with_ransac(keypoints1, keypoints2, good_matches[:50])
 
-    result_img = draw_matches(img1, keypoints1, img2, keypoints2, good_matches[:50])
+    result_img = custom_draw_matches(img1, keypoints1, img2, keypoints2, good_matches[:50])
 
     return result_img
