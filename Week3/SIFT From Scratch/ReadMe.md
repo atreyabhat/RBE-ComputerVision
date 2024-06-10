@@ -21,4 +21,4 @@ The algorithm consists of following steps, including:
 
 ![UnityHall_keypoints](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/0447f974-1bcc-4d4b-a464-677dd1e2b4b5)
 ![Lenna_keypoints](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/a78452d3-0f40-4c33-9e30-35530f189387)
-![book_keypoints](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/9563a8ee-2242-4ab0-914f-77f5015a050d)
+<img src="https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/9563a8ee-2242-4ab0-914f-77f5015a050d" alt="book_keypoints" width="400"/>
