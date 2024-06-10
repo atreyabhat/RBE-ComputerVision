@@ -43,3 +43,12 @@ A simple camera application to read camera feed and perform various operations o
 ## Usage
 ```bash
 python camera_application.py
+
+
+
+# Geometric Transfomration and Corner Detection
+![harris_frame](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/23725cb1-b720-473c-a5b1-db08e85230f3)
+![harris_rotated](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/d5227fc9-957f-4f1f-96d7-d751976f153d)
+![sift_frame](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/7bd88632-7eba-4b3c-b7e6-83f5b9f71694)
+![sift_perspective_tf](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/9d808cff-33fe-4ca8-83bd-ed582ff14292)
+
