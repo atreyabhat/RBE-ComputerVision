@@ -13,6 +13,8 @@ For each subsequent image, perform the following steps:
 7. **Warp both images** to the panorama canvas.
 8. **Blend the warped images** to create the panorama.
 
+The Blending can be improved greatly with different techniques. Here only a weighted average is performed to keep it simple. 
+
 ![panorama](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/bac9b73e-f66a-4833-a678-5c6f40c02a17)
 ![custom_pano](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/b85611d5-404d-493f-bcc0-4cbaa3e1cd3b)
 ![boston_pano](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/d2f88250-662c-41b2-ae4c-daa85619c251)
