@@ -1,45 +1,15 @@
-# Basic Camera Application
+## SIFT and SURF Feature matching
 
-A simple camera application to read camera feed and perform various operations on it.
+This contains the implementation of feature detection with SIFT and SURF. Feature matching is done with Brute Force, FLANN and FLANN + RANSAC to remove outliers
 
-![camera_app_intro](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/5863199d-8a22-4ef7-8a12-de8d805521e9)
+### SURF + FLANN + RANSAC
+![SURF + FLANN + RANSAC](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/14afec2a-11ad-4893-afbc-b2bb831b421c)
 
+### SURF + Brute-Force
+![SURF + Brute-Force](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/cf1703b3-83f9-4855-9459-c3000c663d02)
 
-## Usage Instructions
-1. **Launching the Application:**
-   - Run the script `cameraApplication.py`.
-   - Ensure that a webcam is connected to the system.
-   - Press 'Esc' to exit.
-   
-2. **Keyboard Controls:**
-   - Press the following keys to activate corresponding features. The features being used are displayed on the GUI:
-     - 'c': Capture an image.
-     - 'v': Start/Stop video recording.
-     - 'r': Rotate the displayed image by 10 degrees.
-     - 'b': Toggle Gaussian blur effect.
-     - 't': Toggle threshold effect.
-     - 's': Toggle sharpening effect.
-     - 'e': Toggle color segmentation.
-   
-3. **Trackbars:**
-   - The application window displays trackbars for adjusting various parameters:
-     - 'Threshold': Adjust the threshold value for binary thresholding.
-     - 'Blur-Sigma': Adjust the sigma value for Gaussian blur effect.
-     - 'Sharpen-Strength': Adjust the strength of the sharpening filter.
-     - 'Zoom': Adjust the zoom factor for resizing the frame.
-   
-4. **Image Capture:**
-   - Press 'c' to capture and save an image.
-   - The image is also modified with the timestamp RoI overlaid on the top right corner.
-   
-5. **Video Recording:**
-   - Press 'v' to start recording. Press again to stop.
+### SIFT + FLANN + RANSAC
+![SIFT + FLANN + RANSAC](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/9262d817-9b98-420d-b4e2-3f421c4017cf)
 
-## Requirements
-- Python 3.x
-- OpenCV library
-- Numpy
-
-## Usage
-```bash
-python camera_application.py
+### SIFT + Brute-Force
+![SIFT + Brute-Force](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/80774ce3-ddda-4041-aecb-5fb86ecde96b)
