@@ -139,7 +139,7 @@ def TrainOperation(
     ###############################################
     # Fill your optimizer of choice here!
     ###############################################
-    Optimizer = ...
+    Optimizer = torch.optim.Adam(model.parameters(), lr=0.0025, weight_decay=0.0001)
 
     # Tensorboard
     # Create a summary to monitor loss tensor
@@ -192,7 +192,7 @@ def TrainOperation(
                 )
                 print("\n" + SaveName + " Model Saved...")
 
-            result = model.validation_step(Batch)
+            result = model.validation_step(I1Batch)
             # Tensorboard
             Writer.add_scalar(
                 "LossEveryIter",

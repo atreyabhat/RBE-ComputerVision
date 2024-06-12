@@ -4,7 +4,7 @@ RBE549-NithinSanket/HW0-Alohamora/Draft
 
 Week1/part4.py
 Week1/part3.py
-
+Week2/results*
 
 
 *.zip
@@ -16,3 +16,7 @@ Week1/part3.py
 *.tar.bz2
 *.xz
 *.tar.xz
+*__pycache__/
+RBE549-NithinSanket/P1-Panorama/Phase2/Data/
+RBE549-NithinSanket/P1-Panorama/Phase1/Data/
+*Draft/
