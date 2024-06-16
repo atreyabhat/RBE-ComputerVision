@@ -4,7 +4,7 @@
 ![quarters_result](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/910fcdae-863b-4c61-99f0-da84cb2d7b81)
 
 
-## Perform HDR fusion using Martenes Fusion algorithm
+## Perform HDR fusion using Mertens Fusion algorithm
 
 <img src="https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/77b61f63-e6a2-45aa-9aa2-c6c8a80f913a" width="400"><br>
 *Image1*
