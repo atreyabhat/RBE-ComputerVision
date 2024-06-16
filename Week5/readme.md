@@ -16,4 +16,5 @@
 *Image3*
 
 ![HDR fused image](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/220e28f3-6c34-4ef1-b043-a07989b700d5)
+*HDR Image*
 
