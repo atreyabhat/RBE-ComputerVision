@@ -6,7 +6,7 @@ Camera calibration is essential for computer vision tasks involving 3D geometry.
 ## 2. Data
 The calibration target used is a checkerboard pattern printed on A4 paper, where each square measures 21.5mm.
 
-![IMG_20170209_042619](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/bc1b378e-99f3-4deb-ba5e-ec1191488804)
+<img src="https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/bc1b378e-99f3-4deb-ba5e-ec1191488804" width="400">
 
 
 ## 3. Initial Parameter Estimation
