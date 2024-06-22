@@ -22,7 +22,7 @@ Given minimal distortion assumptions, the initial estimate of distortion paramet
 The objective is to minimize the geometric error, which is defined as the sum of the differences between actual image points \( x_{i,j} \) and projected points \( \hat{x}_{i,j} \).
 
 ### 4.2 Optimization Process
-Scipy's optimization methods are employed to iteratively adjust the camera intrinsic parameters \( fx, fy, cx, cy \) and distortion coefficients \( k1, k2 \). This minimizes the geometric error, refining the parameters until the error is minimized, improving the accuracy of camera calibration.
+Scipy's optimization methods are employed to iteratively adjust the camera intrinsic parameters \( fx, fy, cx, cy \) and distortion coefficients \( k1, k2 \).
 
 ## 5. Implementation
 The implementation involves Python code using OpenCV for image processing and Scipy for optimization. The steps include:
