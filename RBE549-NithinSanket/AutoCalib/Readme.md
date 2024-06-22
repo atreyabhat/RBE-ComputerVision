@@ -17,19 +17,23 @@ The camera extrinsics \( R \) (rotation matrix) and \( t \) (translation vector)
 Given minimal distortion assumptions, the initial estimate of distortion parameters \( k = [0, 0]^T \) is used.
 
 ## 4. Non-linear Geometric Error Minimization
+
 ### 4.1 Minimization Objective
-The goal is to minimize the geometric error defined as:
-
-\[ \sum_{i=1}^{N} \sum_{j=1}^{M} \| x_{i,j} - \hat{x}_{i,j}(K, R_i, t_i, X_j, k) \| \]
-
-where \( x_{i,j} \) and \( \hat{x}_{i,j} \) represent image and projected points, respectively.
+The objective is to minimize the geometric error, which is defined as the sum of the differences between actual image points \( x_{i,j} \) and projected points \( \hat{x}_{i,j} \).
 
 ### 4.2 Optimization Process
-Scipy's optimization methods are employed to minimize the above geometric error, refining the parameters \( fx, fy, cx, cy, k1, k2 \).
+Scipy's optimization methods are employed to iteratively adjust the camera intrinsic parameters \( fx, fy, cx, cy \) and distortion coefficients \( k1, k2 \). This minimizes the geometric error, refining the parameters until the error is minimized, improving the accuracy of camera calibration.
 
-## References
-- Zhengyou Zhang, "A Flexible New Technique for Camera Calibration," [Link to paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr98-71.pdf)
-
+## 5. Implementation
+The implementation involves Python code using OpenCV for image processing and Scipy for optimization. The steps include:
+- Loading calibration images
+- Generating world points
+- Finding chessboard corners
+- Computing initial intrinsic matrix
+- Computing extrinsic parameters
+- Optimizing intrinsic matrix and distortion coefficients
+- Computing reprojection errors
+- Visualizing results and saving rectified images
 
 ## Usage
 Run camCalib_Zhang.py
