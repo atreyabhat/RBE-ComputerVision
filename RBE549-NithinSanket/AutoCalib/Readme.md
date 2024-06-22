@@ -38,7 +38,7 @@ The implementation involves Python code using OpenCV for image processing and Sc
 - Computing reprojection errors
 - Visualizing results and saving rectified images
 
-  ![rectified_6](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/39aa3777-e2bd-4027-a524-9a81c1bfbdce)
+<img src="https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/39aa3777-e2bd-4027-a524-9a81c1bfbdce" width="400">
 
 
 ## References
