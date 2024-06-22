@@ -19,7 +19,9 @@ Given minimal distortion assumptions, the initial estimate of distortion paramet
 ## 4. Non-linear Geometric Error Minimization
 ### 4.1 Minimization Objective
 The goal is to minimize the geometric error defined as:
+
 \[ \sum_{i=1}^{N} \sum_{j=1}^{M} \| x_{i,j} - \hat{x}_{i,j}(K, R_i, t_i, X_j, k) \| \]
+
 where \( x_{i,j} \) and \( \hat{x}_{i,j} \) represent image and projected points, respectively.
 
 ### 4.2 Optimization Process
