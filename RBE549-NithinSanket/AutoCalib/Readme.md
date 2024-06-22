@@ -6,6 +6,9 @@ Camera calibration is essential for computer vision tasks involving 3D geometry.
 ## 2. Data
 The calibration target used is a checkerboard pattern printed on A4 paper, where each square measures 21.5mm.
 
+![IMG_20170209_042619](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/bc1b378e-99f3-4deb-ba5e-ec1191488804)
+
+
 ## 3. Initial Parameter Estimation
 ### 3.1 Solving for Approximate Camera Intrinsic Matrix \( K \)
 The initial estimate of the camera intrinsic matrix \( K \) is obtained using OpenCV's `findChessboardCorners` function.
@@ -34,6 +37,12 @@ The implementation involves Python code using OpenCV for image processing and Sc
 - Optimizing intrinsic matrix and distortion coefficients
 - Computing reprojection errors
 - Visualizing results and saving rectified images
+
+  ![rectified_6](https://github.com/atreyabhat/RBE-ComputerVision/assets/39030188/39aa3777-e2bd-4027-a524-9a81c1bfbdce)
+
+
+## References
+- Zhengyou Zhang, "A Flexible New Technique for Camera Calibration," [Link to paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr98-71.pdf)
 
 ## Usage
 Run camCalib_Zhang.py
