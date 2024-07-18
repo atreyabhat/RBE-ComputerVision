@@ -4,15 +4,15 @@ This project explores fundamental concepts in computer vision using OpenCV in Py
 
 ## Parts Overview
 
-### Part 1: Triangular Pyramid to Chessboard
+### Part 1: Triangular Pyramid to Chessboard (pyramid.py)
 
 Implement a tutorial to render a triangular pyramid onto a chessboard pattern.
 
-### Part 2: Depth Map Generation from Stereo Images
+### Part 2: Depth Map Generation from Stereo Images (depth_map.py)
 
 Generate a depth map using stereo images to estimate the spatial distances of objects.
 
-### Part 3: Epipolar Geometry Analysis
+### Part 3: Epipolar Geometry Analysis (epipolar_geometry.py)
 ![epipolars](https://github.com/user-attachments/assets/ffa9ccdc-bfab-4856-a818-1769e429b9c8)
 
 
