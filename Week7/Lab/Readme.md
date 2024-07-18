@@ -1,8 +1,7 @@
-# Epipolar Geometry
+# Depth Map and Epipolar Geometry
 
 This project explores fundamental concepts in computer vision using OpenCV in Python. It covers topics such as stereo imaging, depth estimation, and epipolar geometry analysis.
 
-## Parts Overview
 
 ### Part 1: Triangular Pyramid to Chessboard (pyramid.py)
 
