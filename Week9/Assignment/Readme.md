@@ -13,7 +13,7 @@ This project leverages the YOLOv8 model and OpenCV to detect and track pedestria
 - OpenCV (`cv2`)
 - Numpy
 - `ultralytics` (for YOLOv8)
-- 
+
 ## How it Works:
 1. **Crosswalk Segmentation**: The `segment_crosswalk` function detects and isolates the crosswalk area using color thresholding and contour detection.
 2. **Tracking with YOLOv8**: The `model.track()` method from the YOLOv8 package is used to track moving objects (vehicles and pedestrians).
