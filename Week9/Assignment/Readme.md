@@ -2,6 +2,11 @@
 
 This project leverages the YOLOv8 model and OpenCV to detect and track pedestrians and vehicles on a crosswalk in a video stream. It counts the number of pedestrians crossing the road and the number of vehicles that pass through a predefined reference line.
 
+<img src="https://github.com/user-attachments/assets/3b06801d-28c5-49ae-a147-750c96192dde" width="500" />
+
+<img src="https://github.com/user-attachments/assets/837b88cb-ffdf-497f-928a-3b7f29620e6e" width="500" />
+
+
 ## Features:
 - **Crosswalk detection**: Segments and highlights the crosswalk area in the video.
 - **Vehicle and pedestrian tracking**: Tracks cars, bikes, and pedestrians using YOLOv8.
@@ -20,6 +25,3 @@ This project leverages the YOLOv8 model and OpenCV to detect and track pedestria
 3. **Crossing Detection**: Vehicles and pedestrians crossing the reference line or the crosswalk are counted in real-time.
 
 
-<img src="https://github.com/user-attachments/assets/3b06801d-28c5-49ae-a147-750c96192dde" width="500" />
-
-<img src="https://github.com/user-attachments/assets/837b88cb-ffdf-497f-928a-3b7f29620e6e" width="500" />
